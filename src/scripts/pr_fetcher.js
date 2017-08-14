@@ -174,9 +174,4 @@ function main(raccoonImage=true) {
 }
 
 
-module.exports = main();
-
-// Import and use this script like this:
-// main().then(slackMessage => {
-//     console.log(slackMessage);
-// });
+module.exports = main;

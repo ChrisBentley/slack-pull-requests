@@ -24,7 +24,9 @@
  -> http://howdy.ai/botkit
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-require('env.js');
+require('../env.js');
+
+var prFetcher = require('./scripts/pr_fetcher.js');
 
 /* Uses the slack button feature to offer a real time bot to multiple teams */
 var Botkit = require('botkit');
@@ -66,39 +68,41 @@ controller.setupWebserver(process.env.PORT, function (err, webserver) {
     });
 });
 
-
-//
-// BEGIN EDITING HERE!
-//
+//Fix for https://github.com/howdyai/botkit/issues/108
+controller.storage.teams.save({id: 'T026K0SVA', foo:"bar"}, function(err) {
+    if(err)
+      console.error(err);
+});
 
 controller.on('slash_command', function (slashCommand, message) {
 
+    console.log(message);
+
     switch (message.command) {
-        case "/echo": //handle the `/echo` slash command. We might have others assigned to this app too!
-            // The rules are simple: If there is no text following the command, treat it as though they had requested "help"
-            // Otherwise just echo back to them what they sent us.
+        case '/prs': //handle the `/prs` slash command.
 
-            // but first, let's make sure the token matches!
-            if (message.token !== process.env.VERIFICATION_TOKEN) return; //just ignore it.
+            // Check the token matches to verify this came from slack
+            if (message.token !== process.env.VERIFICATION_TOKEN) return;
 
-            // if no text was supplied, treat it as a help command
-            if (message.text === "" || message.text === "help") {
+            if (message.text === "help") {
                 slashCommand.replyPrivate(message,
-                    "I echo back what you tell me. " +
-                    "Try typing `/echo hello` to see.");
+                    "I list pull requests for your team." +
+                    "Try typing `/prs` in the #pegasus_team channel to see an example.");
                 return;
             }
 
-            // If we made it here, just echo what the user typed back at them
-            //TODO You do it!
-            slashCommand.replyPublic(message, "1", function() {
-                slashCommand.replyPublicDelayed(message, "2").then(slashCommand.replyPublicDelayed(message, "3"));
-            });
+            if (message.user_id === "U6DT0PPT5" || message.user_id === "USLACKBOT") {
+                prFetcher().then( prResponse => {
+                    slashCommand.replyPublicDelayed(message, prResponse);
+                });
+            } else {
+                prFetcher().then( prResponse => {
+                    slashCommand.replyPrivateDelayed(message, prResponse);
+                });
+            }
 
             break;
         default:
             slashCommand.replyPublic(message, "I'm afraid I don't know how to " + message.command + " yet.");
-
     }
-
 });
