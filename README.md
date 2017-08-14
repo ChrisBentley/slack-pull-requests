@@ -31,7 +31,7 @@ You want to edit the Slash Commands Request URL:
 ![slack-app-slashcommands.png](./images/slack-app-slashcommands.png)
 
 and the OAuth Redirect URL:
-![slack-app-oauth.png](./images/slack-app-slashcommands.png)
+![slack-app-oauth.png](./images/slack-app-oauth.png)
 
 
 
