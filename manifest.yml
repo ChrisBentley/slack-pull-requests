@@ -1,8 +1,7 @@
 applications:
 - name: pull-request-fetcher
   domain: eu-gb.mybluemix.net
-  health-check-type: process
   instances: 1
-  memory: 64M
+  memory: 128M
   stack: cflinuxfs2
   buildpack: https://github.com/cloudfoundry/nodejs-buildpack
