@@ -2,7 +2,7 @@ var GitHubApi = require('github');
 
 const githubToken = process.env.GITHUB_TOKEN;
 const githubOrg = 'DigitalInnovation';
-var githubRepos = ['fesk-plp', 'fesk-store-listing', 'mns-core-ui', 'mns-core-ui-header', 'fesk-metrics', 'mns-core-test', 'mns-fe-foundation', 'fesk-documentation', 'fesk'];
+var githubRepos = ['fesk-plp', 'fesk-store-listing', 'mns-core-ui', 'mns-core-ui-header', 'fesk-metrics', 'mns-core-test', 'mns-fe-foundation', 'fesk-documentation', 'fesk', 'pull-request-fetcher'];
 
 
 function getAllPrs(github) {
