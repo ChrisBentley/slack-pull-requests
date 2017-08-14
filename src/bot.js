@@ -91,6 +91,7 @@ controller.on('slash_command', function (slashCommand, message) {
                 return;
             }
 
+            // Check if slackbot or raco triggered the command.
             if (message.user_id === "U6DT0PPT5" || message.user_id === "USLACKBOT") {
                 prFetcher().then( prResponse => {
                     slashCommand.replyPublicDelayed(message, prResponse);

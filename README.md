@@ -6,6 +6,8 @@ This is a bot built using [botkit](https://github.com/howdyai/botkit) which acts
 
 ## How it's setup
 
+Setup as an app on slack, configured [here](https://api.slack.com/apps/A6N9C9ML5)
+
 Runs on CloudFoundry in the fesk-pre-prod space.
 
 ## How to develop further
