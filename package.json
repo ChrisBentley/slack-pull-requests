@@ -2,10 +2,14 @@
   "name": "pull-request-fetcher",
   "version": "1.0.0",
   "description": "A slack slashcommand bot that fetches the team's pull request information",
-  "main": "bot.js",
+  "main": "src/bot.js",
   "scripts": {
     "start": "node src/bot.js",
     "test": "test"
+  },
+  "engines": {
+    "node": "6.11.2",
+    "npm": "3.10.10"
   },
   "repository": {
     "type": "git",
