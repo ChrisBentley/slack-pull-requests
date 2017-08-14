@@ -2,9 +2,9 @@
   "name": "pull-request-fetcher",
   "version": "1.0.0",
   "description": "A slack slashcommand bot that fetches the team's pull request information",
-  "main": "index.js",
+  "main": "bot.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node src/bot.js",
     "test": "test"
   },
   "repository": {
@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/DigitalInnovation/pull-request-fetcher/issues"
   },
-  "homepage": "https://github.com/DigitalInnovation/pull-request-fetcher#readme"
+  "homepage": "https://github.com/DigitalInnovation/pull-request-fetcher#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "botkit": "^0.5.7",
+    "botkit-storage-mongo": "^1.0.7",
+    "github": "^9.2.0",
+    "mongodb": "^2.2.31"
+  }
 }
