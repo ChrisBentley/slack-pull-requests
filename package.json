@@ -1,0 +1,20 @@
+{
+  "name": "pull-request-fetcher",
+  "version": "1.0.0",
+  "description": "A slack slashcommand bot that fetches the team's pull request information",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DigitalInnovation/pull-request-fetcher.git"
+  },
+  "author": "Pegasus Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DigitalInnovation/pull-request-fetcher/issues"
+  },
+  "homepage": "https://github.com/DigitalInnovation/pull-request-fetcher#readme"
+}
