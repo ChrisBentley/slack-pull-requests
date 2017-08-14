@@ -68,7 +68,8 @@ controller.setupWebserver(process.env.PORT, function (err, webserver) {
     });
 });
 
-//Fix for https://github.com/howdyai/botkit/issues/108
+// Fix for https://github.com/howdyai/botkit/issues/108
+// 'T026K0SVA' is the team awesome id
 controller.storage.teams.save({id: 'T026K0SVA', foo:"bar"}, function(err) {
     if(err)
       console.error(err);
@@ -91,12 +92,14 @@ controller.on('slash_command', function (slashCommand, message) {
                 return;
             }
 
-            // Check if slackbot or raco triggered the command.
+            // Check if the pegasus team's raco-bot or a reminder slackbot triggered the command.
             if (message.user_id === "U6DT0PPT5" || message.user_id === "USLACKBOT") {
                 prFetcher().then( prResponse => {
+                    // Reply in public
                     slashCommand.replyPublicDelayed(message, prResponse);
                 });
             } else {
+                // Reply in private
                 prFetcher().then( prResponse => {
                     slashCommand.replyPrivateDelayed(message, prResponse);
                 });
