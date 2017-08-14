@@ -87,13 +87,15 @@ controller.on('slash_command', function (slashCommand, message) {
 
             if (message.text === "help") {
                 slashCommand.replyPrivate(message,
-                    "I list pull requests for your team." +
+                    "I list pull requests for your team when you type `/prs`.\n" +
+                    "Type `/prs public` if you wish to post the open prs to the channel.\n" +
                     "Try typing `/prs` in the #pegasus_team channel to see an example.");
                 return;
             }
 
-            // Check if the pegasus team's raco-bot or a reminder slackbot triggered the command.
-            if (message.user_id === "U6DT0PPT5" || message.user_id === "USLACKBOT") {
+            // Post the PRs to the channel if 'public' was included in the command or
+            // the pegasus team's raco-bot triggered the command.
+            if (message.user_id === "U6DT0PPT5" || message.text === "public") {
                 prFetcher().then( prResponse => {
                     // Reply in public
                     slashCommand.replyPublicDelayed(message, prResponse);
