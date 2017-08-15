@@ -77,8 +77,6 @@ controller.storage.teams.save({id: 'T026K0SVA', foo:"bar"}, function(err) {
 
 controller.on('slash_command', function (slashCommand, message) {
 
-    console.log(message);
-
     switch (message.command) {
         case '/prs': //handle the `/prs` slash command.
 
@@ -92,6 +90,8 @@ controller.on('slash_command', function (slashCommand, message) {
                     "Try typing `/prs` in the #pegasus_team channel to see an example.");
                 return;
             }
+
+            slashCommand.replyPrivate(message, "Hang tight while I get the PR info...");
 
             // Post the PRs to the channel if 'public' was included in the command or
             // the pegasus team's raco-bot triggered the command.
